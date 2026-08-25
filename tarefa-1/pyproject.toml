@@ -1,0 +1,25 @@
+[project]
+name = "tarefa-1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "ArthurJAS", email = "arthurjoskeete@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=7.3.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.1",
+    "opencv-python>=5.0.0.93",
+]
+
+[project.scripts]
+tarefa-1 = "tarefa_1:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+package = false
