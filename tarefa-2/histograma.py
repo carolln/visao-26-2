@@ -1,7 +1,6 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-import math
 
 img = cv2.imread("img/foto06.jpg", cv2.IMREAD_GRAYSCALE)
 assert img is not None
