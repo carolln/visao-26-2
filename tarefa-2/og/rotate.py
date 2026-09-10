@@ -18,7 +18,7 @@ destination_coordinates = np.array([
     [0, 500], 
     ], np.float32)
 
-img = cv2.imread("img/livro.jpg")
+img = cv2.imread("../img/livro.jpg")
 
 assert img is not None
 
@@ -26,4 +26,4 @@ transform = cv2.getPerspectiveTransform(src=source_coordinates, dst=destination_
 
 a = cv2.warpPerspective(img, transform, (400, 500))
 
-cv2.imwrite("output/perspective.jpg",a)
+cv2.imwrite("../output/perspective.jpg",a)

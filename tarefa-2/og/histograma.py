@@ -2,7 +2,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-img = cv2.imread("img/foto06.jpg", cv2.IMREAD_GRAYSCALE)
+img = cv2.imread("../img/foto06.jpg", cv2.IMREAD_GRAYSCALE)
 assert img is not None
 h, w = img.shape
 
@@ -27,4 +27,4 @@ for i in range(h):
     for j in range(w):
         manual_histogram[i][j] = (255*(histacc[manual_histogram[i][j]]))
 output_img = np.hstack([img, manual_histogram])
-cv2.imwrite("output/side_by_side.jpg", output_img)
+cv2.imwrite("../output/side_by_side.jpg", output_img)
