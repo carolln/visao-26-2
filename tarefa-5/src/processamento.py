@@ -3,7 +3,8 @@ import sys
 import matplotlib.pyplot as plt
 import random
 
-img = cv2.imread(sys.argv[1], 0)
+img = cv2.imread(sys.argv[1], 0) 
+assert img is not None, "Não foi possível abrir imagem"
 H, W = img.shape
 
 F = np.fft.fftshift(np.fft.fft2(img, (512, 512)))
