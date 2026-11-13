@@ -9,12 +9,11 @@ def nothing(x):
  
 # Create a black image, a window
 img = np.zeros((300,512,3), np.uint8)
-img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+# hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 cv.namedWindow('image')
  
 # create trackbars for color change
-cv.createTrackbar('H','image',0,180,nothing)
- 
+cv.createTrackbar('H','image',0,179,nothing)
 cv.createTrackbar('S','image',0,255,nothing)
 cv.createTrackbar('V','image',0,255,nothing)
  
@@ -23,6 +22,7 @@ switch = '0 : OFF \n1 : ON'
 cv.createTrackbar(switch, 'image',0,1,nothing)
  
 while(1):
+    cv.cvtColor(img, cv.COLOR_BGR2HSV, img)
     cv.imshow('image',img)
     k = cv.waitKey(1) & 0xFF
     if k == 27:
@@ -37,6 +37,7 @@ while(1):
     if sw == 0:
         img[:] = 0
     else:
+        img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
         img[:] = [h,s,v]
  
 cv.destroyAllWindows()
