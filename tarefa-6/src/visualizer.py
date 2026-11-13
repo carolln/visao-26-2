@@ -3,6 +3,7 @@ import numpy as np
 
 # CODE MADE AVAILABLE BY OPENCV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # converting to hsv and tryna get this to work
+# YIPPIEEEEEEEEEEEEEE THIS FINALLY WORKS!!!!!!!!!!!!!!!!!!
 
 def nothing(x):
     pass
@@ -22,7 +23,6 @@ switch = '0 : OFF \n1 : ON'
 cv.createTrackbar(switch, 'image',0,1,nothing)
  
 while(1):
-    cv.cvtColor(img, cv.COLOR_BGR2HSV, img)
     cv.imshow('image',img)
     k = cv.waitKey(1) & 0xFF
     if k == 27:
@@ -33,11 +33,13 @@ while(1):
     s = cv.getTrackbarPos('S','image')
     v = cv.getTrackbarPos('V','image')
     sw = cv.getTrackbarPos(switch,'image')
+
+    calma = np.uint8([[[h,s,v]]])
+    calma = cv.cvtColor(calma, cv.COLOR_HSV2BGR)
  
     if sw == 0:
         img[:] = 0
     else:
-        img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
-        img[:] = [h,s,v]
+        img[:] = [calma[0][0][0],calma[0][0][1],calma[0][0][2]]
  
 cv.destroyAllWindows()
