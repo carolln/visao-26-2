@@ -25,6 +25,12 @@ az = azull[0][0][0]
 
 # print(vm, am, vd, az)
 
+
+filepath = "../img/7.jpg"
+img = cv.imread(filepath)
+mask = np.ones((img.shape[0], img.shape[1]))
+# print(mask.shape)
+
 def choosecolor (valorhsv):
     #sobre 2 menos 1
     
@@ -78,7 +84,8 @@ def getcolor (img, c1):
                 a = cv.cvtColor(a, cv.COLOR_BGR2HSV)
                 # print(a)
                 # img[c[1] + j][c[0] + i] = [0, 0, 0]
-                if (a[0][0][1] > 15): # se eh suficientemente longe do gray
+                if (a[0][0][1] > 15 and mask[c[1] + j][c[0] + i]): # se eh suficientemente longe do gray
+                    mask[c[1] + j][c[0] + i] = 0
                 #     # print(img[c[0] + i][c[1] + j])
                 #     # print(c[0] + i)
                 #     # print(c[1] + j)
@@ -90,8 +97,6 @@ def getcolor (img, c1):
     return hues.index(max(hues))
 
 
-filepath = "../img/7.jpg"
-img = cv.imread(filepath)
 # img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 # print(img[815][449][0], img[815][449][1], img[815][449][2])
 imghsv = cv.cvtColor(img, cv.COLOR_RGB2HSV)
@@ -101,7 +106,7 @@ imgray = cv.GaussianBlur(imgray, (7, 7), 1.5)
 
 # outros parametros: imgray, cv.HOUGH_GRADIENT, 1, 20, param1=50, param2=25, minRadius=30, maxRadius=50
 # imgray, cv.HOUGH_GRADIENT, 1, 25, param1=50, param2=16, minRadius=35, maxRadius=54
-circulos = cv.HoughCircles(imgray, cv.HOUGH_GRADIENT, 1, 20, param1=50, param2=20, minRadius=35, maxRadius=54)
+circulos = cv.HoughCircles(imgray, cv.HOUGH_GRADIENT, 1, 20, param1=50, param2=18, minRadius=35, maxRadius=54)
 
 circulos = np.uint16(np.around(circulos))
 # print(circulos.shape)
@@ -154,6 +159,8 @@ print('vermelho: ' + str(cores[0]))
 print('amarelo: ' + str(cores[1]))
 print('verde: ' + str(cores[2]))
 print('azul: ' + str(cores[3]))
+print('-------------------------------')
+print('total: ' + str(cores[0] + cores[1] + cores[2] + cores[3]));
 # print(cores)
 
 # imgfinal = cv.cvtColor(imgfinal, cv.COLOR_BGR2RGB)
